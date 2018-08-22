@@ -1,0 +1,28 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+group = 'org.trivia'
+archivesBaseName = artifacts
+version = '1.0.0'
+sourceCompatibility = 1.8
+dependencies {
+    compile "io.github.openfeign:feign-httpclient:9.5.0"
+    compile "io.github.openfeign.form:feign-form-spring:3.2.2"
+    compile "org.springframework.cloud:spring-cloud-starter-oauth2:${cloudVersion}"
+    compile "org.springframework.cloud:spring-cloud-starter-feign:${cloudVersion}"
+}
+task writeNewPom << {
+    pom {
+        project {
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/license/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+            description "wechat and dingtalk java sdk"
+
+        }
+
+    }.writeTo("pom.xml")
+}

@@ -1,0 +1,25 @@
+security:
+  oauth2:
+    client:
+      dingtalk:
+        id: dingtalk
+        access-token-uri: ${security.oauth2.client.user-authorization-uri}/gettoken
+        agent-id: # 钉钉内部应用agent—id
+        client-id: # 钉钉CorpId
+        client-secret: # 钉钉CorpSecret
+        pre-established-redirect-uri: ignore
+        user-authorization-uri: https://oapi.dingtalk.com
+        scope: ignore
+        grant-type: authorization_code
+        registered-redirect-uri: # 重定向地址，不支持IP，要用域名，开发时可修改hosts
+      wechat:
+        id: wechat
+        access-token-uri: ${security.oauth2.client.user-authorization-uri}/cgi-bin/gettoken
+        agent-id: # 企业号应用agent—id
+        client-id: # 企业号应用id
+        client-secret: # 企业号应用的secret
+        pre-established-redirect-uri: ${security.oauth2.client.user-authorization-uri}/connect/oauth2/authorize?response_type=code&agentid=${security.oauth2.client.agent-id}&appid=${security.oauth2.client.client-id}&scope=${security.oauth2.client.scope}&redirect_uri=${security.oauth2.client.registered-redirect-uri}#wechat_redirect
+        user-authorization-uri: https://open.weixin.qq.com
+        scope: snsapi_base
+        grant-type: authorization_code
+        registered-redirect-uri: # 重定向地址，不支持IP，要用域名，开发时可修改hosts
